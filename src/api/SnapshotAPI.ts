@@ -1,19 +1,25 @@
 import axios, { type AxiosInstance } from "axios";
 import { Proposal } from "../types";
-//import type { IAgentRuntime } from "@elizaos/core";
-//import { Service, ServiceType } from "@elizaos/core";
 
 export class SnapshotAPI {
-    // TODO: Add service type
-    //static serviceType: ServiceType = ServiceType.WEB_SEARCH;
     
     instance: AxiosInstance;
 
+    /**
+     * Constructor for the SnapshotAPI class
+     * @param overrideBaseUrl Optional base URL to override the default Snapshot API URL
+     */
     constructor(overrideBaseUrl?: string) {
         // Initialize the axios service
         this.instance = axios.create({ baseURL: overrideBaseUrl || 'https://hub.snapshot.org/graphql' });
     }
 
+    /**
+     * Fetches proposals from the Snapshot API for a given list of spaces
+     * @param spaces Array of space names to fetch proposals from
+     * @returns Array of Proposal objects
+     * @throws Error if spaces array is empty or contains invalid data
+     */
     async getProposalsFromSnapshotSpace(spaces: string[]): Promise<Proposal[]> {
         if (!Array.isArray(spaces) || spaces.length === 0 || spaces.some(space => !space || space === "")) {
             throw new Error("Spaces array must be defined and contain non-empty strings");
@@ -53,8 +59,8 @@ export class SnapshotAPI {
                     }
                 `,
             });
-        } catch (error) {
-            throw new Error("Failed to fetch proposals from Snapshot API", error);
+        } catch {
+            throw new Error("Failed to fetch proposals from Snapshot API");
         }
 
         // Validate the proposals response
@@ -71,6 +77,12 @@ export class SnapshotAPI {
         return proposals.data.proposals as Proposal[];
     }
 
+    /**
+     * Formats an array of Snapshot proposals into a human-readable string
+     * @param proposals Array of Snapshot proposal objects to format
+     * @returns Formatted string containing proposal details
+     * @throws Error if proposals array is empty or contains invalid data
+     */
     formatLatestProposalsData(proposals: Proposal[]): string {
         if (!Array.isArray(proposals) || proposals.length === 0) {
             throw new Error("No valid proposals data provided");
