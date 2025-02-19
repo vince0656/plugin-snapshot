@@ -1,6 +1,6 @@
 {
     "name": "@vdecentralised/plugin-snapshot",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "type": "module",
     "main": "dist/index.js",
     "module": "dist/index.js",
@@ -20,11 +20,13 @@
         "@elizaos/core": "0.1.9",
         "axios": "1.7.9",
         "bignumber.js": "9.1.2",
-        "node-cache": "5.1.2"
+        "node-cache": "5.1.2",
+        "zod": "^3.24.2"
     },
     "devDependencies": {
         "@biomejs/biome": "1.5.3",
         "tsup": "^8.3.5",
+        "typescript": "^5.7.3",
         "vitest": "2.1.9"
     },
     "scripts": {
