@@ -1,4 +1,4 @@
-# @vince0656/plugin-snapshot
+# @vdecentralised/plugin-snapshot
 
 [Snapshot.box](https://snapshot.box/) plugin for Eliza OS that provides Snapshot data access through providers for richer web3 governance.
 
@@ -10,7 +10,7 @@ This plugin provides functionality to:
 ## Installation
 
 ```bash
-pnpm install @vince0656/plugin-snapshot
+pnpm install @vdecentralised/plugin-snapshot
 ```
 
 ## Configuration
@@ -29,7 +29,7 @@ Copy the `.env.example` file to `.env` and set the `SNAPSHOT_ENS_NAMES` variable
 Import and register the plugin in your Eliza configuration:
 
 ```typescript
-import { snapshotPlugin } from "@vince0656/plugin-snapshot";
+import { snapshotPlugin } from "@vdecentralised/plugin-snapshot";
 
 export default {
     plugins: [snapshotPlugin],
