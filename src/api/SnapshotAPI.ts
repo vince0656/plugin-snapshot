@@ -20,7 +20,7 @@ export class SnapshotAPI {
      * @returns Array of Proposal objects
      * @throws Error if spaces array is empty or contains invalid data
      */
-    async getProposalsFromSnapshotSpace(spaces: string[]): Promise<Proposal[]> {
+    async getProposalsFromSnapshotSpace(spaces: string[], first: number = 5, skip: number = 0): Promise<Proposal[]> {
         if (!Array.isArray(spaces) || spaces.length === 0 || spaces.some(space => !space || space === "")) {
             throw new Error("Spaces array must be defined and contain non-empty strings");
         }
@@ -31,8 +31,8 @@ export class SnapshotAPI {
                 query: `
                     query {
                         proposals (
-                            first: 20,
-                            skip: 0,
+                            first: ${first},
+                            skip: ${skip},
                             where: {
                                 space_in: ${JSON.stringify(spaces)}
                             },

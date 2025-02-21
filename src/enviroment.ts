@@ -4,6 +4,8 @@ import { z } from "zod";
 export const snapshotEnvSchema = z.object({
     SNAPSHOT_ENS_NAMES: z.string().min(1, "Snapshot Plugin: ENS names are required"),
     SNAPSHOT_API_BASE_URL: z.string().optional(),
+    SNAPSHOT_PROPOSAL_FETCH_LIMIT: z.number().optional(),
+    SNAPSHOT_PROPOSAL_FETCH_SKIP: z.number().optional(),
 });
 
 export type SnapshotConfig = z.infer<typeof snapshotEnvSchema>;
@@ -19,6 +21,12 @@ export async function validateSnapshotConfig(
             SNAPSHOT_API_BASE_URL:
                 runtime.getSetting("SNAPSHOT_API_BASE_URL") ||
                 process.env.SNAPSHOT_API_BASE_URL,
+            SNAPSHOT_PROPOSAL_FETCH_LIMIT:
+                runtime.getSetting("SNAPSHOT_PROPOSAL_FETCH_LIMIT") ||
+                process.env.SNAPSHOT_PROPOSAL_FETCH_LIMIT,
+            SNAPSHOT_PROPOSAL_FETCH_SKIP:
+                runtime.getSetting("SNAPSHOT_PROPOSAL_FETCH_SKIP") ||
+                process.env.SNAPSHOT_PROPOSAL_FETCH_SKIP,
         };
 
         return snapshotEnvSchema.parse(config);

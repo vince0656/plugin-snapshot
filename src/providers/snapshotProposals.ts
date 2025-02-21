@@ -19,7 +19,7 @@ const snapshotProposalsProvider: Provider = {
             const config = await validateSnapshotConfig(runtime);
             const api = new SnapshotAPI(config.SNAPSHOT_API_BASE_URL ?? undefined);
             const spaces = config.SNAPSHOT_ENS_NAMES;
-            const proposals = await api.getProposalsFromSnapshotSpace(spaces.split(","));
+            const proposals = await api.getProposalsFromSnapshotSpace(spaces.split(","), config.SNAPSHOT_PROPOSAL_FETCH_LIMIT ?? 5, config.SNAPSHOT_PROPOSAL_FETCH_SKIP ?? 0);
             elizaLogger.info(`Fetched proposals from snapshot spaces ${spaces} and found ${proposals.length} proposals`);
             return api.formatLatestProposalsData(proposals);
         } catch (error) {

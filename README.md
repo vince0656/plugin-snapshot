@@ -10,7 +10,11 @@ This plugin provides functionality to:
 ## Installation
 
 ```bash
-pnpm install @vdecentralised/plugin-snapshot
+npm install @vdecentralised/plugin-snapshot
+# or
+yarn add @vdecentralised/plugin-snapshot
+# or
+pnpm add @vdecentralised/plugin-snapshot
 ```
 
 ## Configuration
@@ -19,7 +23,16 @@ The plugin requires the following environment variables:
 
 ```env
 # The space ENS names to monitor for snapshot proposals.
-SNAPSHOT_ENS_NAMES=
+SNAPSHOT_ENS_NAMES=uniswapgovernance.eth,balancer.eth
+
+# The base URL for the snapshot API.
+SNAPSHOT_API_BASE_URL=https://hub.snapshot.org/graphql
+
+# The number of proposals to fetch from the snapshot space.
+SNAPSHOT_PROPOSAL_FETCH_LIMIT=5
+
+# The number of proposals to skip from the snapshot space.
+SNAPSHOT_PROPOSAL_FETCH_SKIP=0
 ```
 
 Copy the `.env.example` file to `.env` and set the `SNAPSHOT_ENS_NAMES` variable to the ENS spaces you want to monitor.
