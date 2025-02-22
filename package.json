@@ -1,6 +1,6 @@
 {
     "name": "@vdecentralised/plugin-snapshot",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "type": "module",
     "main": "dist/index.js",
     "module": "dist/index.js",
@@ -41,5 +41,29 @@
     "peerDependencies": {
         "form-data": "4.0.1",
         "whatwg-url": "7.1.0"
+    },
+    "agentConfig": {
+        "pluginType": "elizaos:client:1.0.0",
+        "pluginParameters": {
+            "SNAPSHOT_ENS_NAMES": {
+                "type": "string",
+                "description": "The CSV string of ENS names to fetch snapshotdata from. E.g. 'uniswapgovernance.eth,balancervoting.eth'"
+            },
+            "SNAPSHOT_API_BASE_URL": {
+                "type": "string",
+                "optional": true,
+                "description": "GraphQL API base URL override for Snapshot. If not provided, the default will be used for mainnet data."
+            },
+            "SNAPSHOT_PROPOSAL_FETCH_LIMIT": {
+                "type": "number",
+                "optional": true,
+                "description": "The maximum number of proposals to fetch from Snapshot. Defaults to 5."
+            },
+            "SNAPSHOT_PROPOSAL_FETCH_SKIP": {
+                "type": "number",
+                "optional": true,
+                "description": "The number of proposals to skip from Snapshot. Defaults to 0."
+            }
+        }
     }
 }
